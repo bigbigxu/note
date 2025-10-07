@@ -75,21 +75,21 @@ print(model.predict([[4, 4, 5]]))
 
 2个点在空间的距离
 
-![img](https://uploader.shimo.im/f/drDRy9Tdfisb9wAM.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861132.png)
 
 ## 曼哈顿距离
 
-![img](https://uploader.shimo.im/f/QrX5IB31VouzFbfL.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861138.png)
 
  
 
 ## 切比雪夫距离 
 
-![img](https://uploader.shimo.im/f/oS4FCPugSfCLicYz.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861289.png)
 
 ## 闵氏距离
 
-![img](https://uploader.shimo.im/f/Dr92pqeQzJF9rMgw.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861290.png)
 
  
 
@@ -107,7 +107,7 @@ print(model.predict([[4, 4, 5]]))
 
  
 
-![img](https://uploader.shimo.im/f/3oXb61jsP4JyZmtu.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861361.png)
 
  
 
@@ -138,7 +138,7 @@ print(transformer.fit_transform(data))
 
 通过对原始数据进行标准化，转换为 **均值为0 标准差为**1 的标准正态分布的数据
 
-![img](https://uploader.shimo.im/f/hCk7ns2RWPN97wJ1.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861361.png)
 
  
 
@@ -150,11 +150,11 @@ print(transformer.fit_transform(data))
 
 方差：是在概率论和统计方差衡量一组数据时离散程度的度量（               其中M为均值  n为数据总数）
 
-![img](https://uploader.shimo.im/f/loGvllUqp7oKGhPa.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861361.png)
 
 标准差σ是方差开根号：
 
-![img](https://uploader.shimo.im/f/KzDaizDbBPlsd1C9.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861361.png)
 
  
 
@@ -319,7 +319,7 @@ if __name__ == '__main__':
 
 最优参数下交叉验证的平均表现：对每个超参数组合（比如knn中n_neighbors=3），计算k次验证得分的平均值（如准确率的平均值）。
 
-![img](https://uploader.shimo.im/f/tY3zeZ4iixjFDdMt.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDQwOTgsImZpbGVHVUlEIjoiOTEzSk1KRGwyZVMweWJBRSIsImlhdCI6MTc1OTgwMzc5OCwiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.n1UtsPIq0dehAYQuL4Q-HF7y4Tbuced_S1p4S-n7qQU)
+![img](assets/image-1759804861361.png)
 
  
 

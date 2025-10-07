@@ -82,13 +82,13 @@ ESC进入命令模式，操作：
 
  
 
-![img](https://uploader.shimo.im/f/iXvTfthuaPRW8ntp.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDM2MjMsImZpbGVHVUlEIjoiUjEzamRMSnlybElKMDJrNSIsImlhdCI6MTc1OTgwMzMyMywiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.HIe_EilEEwOoEWvoiufkIs1hKoD3UvSds9WeV0tOESk)
+![img](assets/image-1759805014898.png)
 
  
 
 Anaconda界面启动Jupyter：
 
-![img](https://uploader.shimo.im/f/bVVe5anSeqCzR8X1.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDM2MjMsImZpbGVHVUlEIjoiUjEzamRMSnlybElKMDJrNSIsImlhdCI6MTc1OTgwMzMyMywiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.HIe_EilEEwOoEWvoiufkIs1hKoD3UvSds9WeV0tOESk)
+![img](assets/image-1759805014921.png)
 
  
 
@@ -96,7 +96,7 @@ Anaconda界面启动Jupyter：
 
 创建Jupyter笔记：
 
-![img](https://uploader.shimo.im/f/jQ2YIxDtOdCwbs0F.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDM2MjMsImZpbGVHVUlEIjoiUjEzamRMSnlybElKMDJrNSIsImlhdCI6MTc1OTgwMzMyMywiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.HIe_EilEEwOoEWvoiufkIs1hKoD3UvSds9WeV0tOESk)
+![img](assets/image-1759805014956.png)
 
  
 
@@ -104,7 +104,7 @@ Anaconda界面启动Jupyter：
 
 连接远程Jupyter：
 
-![img](https://uploader.shimo.im/f/yghjUEY87z9BPnLA.png!thumbnail?accessToken=eyJhbGciOiJIUzI1NiIsImtpZCI6ImRlZmF1bHQiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjE3NTk4MDM2MjMsImZpbGVHVUlEIjoiUjEzamRMSnlybElKMDJrNSIsImlhdCI6MTc1OTgwMzMyMywiaXNzIjoidXBsb2FkZXJfYWNjZXNzX3Jlc291cmNlIiwicGFhIjoiYWxsOmFsbDoiLCJ1c2VySWQiOjk3MzY0OTQ5fQ.HIe_EilEEwOoEWvoiufkIs1hKoD3UvSds9WeV0tOESk)
+![img](assets/image.png)
 
  
 
