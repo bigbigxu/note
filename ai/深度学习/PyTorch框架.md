@@ -528,3 +528,376 @@ def view():
 if __name__ == '__main__':
     view()
 ```
+
+## 张量拼接操作
+
+```
+import torch
+
+torch.manual_seed(22)
+
+t1 = torch.randint(1, 10, (2, 3))
+print(f"t1: {t1}, shape: {t1.shape}")
+
+t2 = torch.randint(1, 10, (2, 3))
+print(f"t2: {t2}, shape: {t2.shape}")
+
+# cat(), 不改变维度拼接张量，
+# 1. 需要指定拼接的维度
+# 2. 除了拼接维度，其他维度必须相同
+
+# 在0维拼接张量，就是按照行顺序拼接。
+# (2, 3) + (2, 3) = (4, 3)
+# [[3, 8, 2], [4, 8, 3], [3, 2, 3], [7, 3, 5]]
+t3 = torch.cat([t1, t2], dim=0)
+print(f"t3: {t3}, shape: {t3.shape}")
+
+# 在0维拼接张量，就是按照列顺序拼接。
+# (2, 3) + (2, 3) = (2, 6)
+# [[3, 8, 2, 3, 2, 3],[4, 8, 3, 7, 3, 5]]
+t4 = torch.cat([t1, t2], dim=1)
+print(f"t4: {t4}, shape: {t4.shape}")
+
+
+# stack() 拼接张量, 可以是新维度, 但是无论新旧维度, 所有维度都必须保持一致
+# 其实就是在0维度上加一个维度。
+# 增加一个[], 将数据填充进去。
+# (2, 3) + (2, 3) = (2, 2, 3)
+t5 = torch.stack([t1, t2], dim=0)
+print(f"t5: {t5}, shape: {t5.shape}")
+
+
+# (2, 3) + (2, 3) = (2, 3, 2)
+t6 = torch.stack([t1, t2], dim=2)
+print(f"t6: {t6}, shape: {t6.shape}")
+```
+
+# 自动微分
+
+在训练升级网络时，最常用的算法是反向传播。在该算法中，参数（模型权重）会根据损失函数关于对应参数的梯度进行调整。为了计算这些梯度，PyTorch内置了名为 torch.autograd 的微分模块。
+
+Pytorch只支持对标量求导。
+
+
+
+## 简单使用
+
+1. y.backward 计算梯度
+2. 获取x点的梯度值：x.grad，默认情况下回累加上一次的梯度值。
+
+```
+import torch
+
+torch.manual_seed(22)
+
+"""
+权重更新公式：
+    W新 = W旧 - 学习率 * 梯度
+    梯度 = 损失函数的导数
+
+PyTorch模块内置有 自动微分模块, 专门实现针对于 不同的损失函数求导。
+只有标量张量才能求导, 且大多数底层操作的都是浮点型。    
+"""
+
+# 1. 定义张量
+# requires_grad需要设置为true：是否自动微分(求导)
+w = torch.tensor([10, 20], requires_grad=True, dtype=torch.float)
+
+# 2. 定义损失函数
+loss = 2 * w ** 2 # 倒数函数： 4w
+print(f"梯度函数类型: {type(loss.grad_fn)}")
+
+# 3. 计算梯队
+# 梯度 = 损失函数的导数, 计算完毕后, 会记录到 w.grad属性中.
+# sum 就是对每个值求导。
+loss.sum().backward()
+print(f"grad {w.grad}") # grad tensor([40., 80.])
+
+# 4. 代入 权重更新公式: W新 = W旧 - 学习率 * 梯度
+w.data = w.data - 0.01 * w.grad
+
+# tensor([ 9.6000, 19.2000], requires_grad=True)
+print(f'更新后的权重: {w}')       # 9.6import torch
+
+torch.manual_seed(22)
+
+"""
+权重更新公式：
+    W新 = W旧 - 学习率 * 梯度
+    梯度 = 损失函数的导数
+
+PyTorch模块内置有 自动微分模块, 专门实现针对于 不同的损失函数求导。
+只有标量张量才能求导, 且大多数底层操作的都是浮点型。    
+"""
+
+# 1. 定义张量
+# requires_grad需要设置为true：是否自动微分(求导)
+w = torch.tensor([10, 20], requires_grad=True, dtype=torch.float)
+
+# 2. 定义损失函数
+loss = 2 * w ** 2 # 倒数函数： 4w
+print(f"梯度函数类型: {type(loss.grad_fn)}")
+
+# 3. 计算梯队
+# 梯度 = 损失函数的导数, 计算完毕后, 会记录到 w.grad属性中.
+# sum 就是对每个值求导。
+loss.sum().backward()
+print(f"grad {w.grad}") # grad tensor([40., 80.])
+
+# 4. 代入 权重更新公式: W新 = W旧 - 学习率 * 梯度
+w.data = w.data - 0.01 * w.grad
+
+# tensor([ 9.6000, 19.2000], requires_grad=True)
+print(f'更新后的权重: {w}') 
+```
+
+## 梯度下降求最优解
+
+```
+import torch
+
+torch.manual_seed(22)
+
+"""
+权重更新公式：
+    W新 = W旧 - 学习率 * 梯度
+    梯度 = 损失函数的导数
+
+PyTorch模块内置有 自动微分模块, 专门实现针对于 不同的损失函数求导。
+只有标量张量才能求导, 且大多数底层操作的都是浮点型。    
+"""
+
+# 1. 定义张量
+# requires_grad需要设置为true：是否自动微分(求导)
+w = torch.tensor([10, 20], requires_grad=True, dtype=torch.float)
+
+# 2. 定义损失函数
+loss = 2 * w ** 2 # 倒数函数： 4w
+print(f"梯度函数类型: {type(loss.grad_fn)}")
+
+# 3. 计算梯队
+# 梯度 = 损失函数的导数, 计算完毕后, 会记录到 w.grad属性中.
+# sum 就是对每个值求导。
+loss.sum().backward()
+print(f"grad {w.grad}") # grad tensor([40., 80.])
+
+# 4. 代入 权重更新公式: W新 = W旧 - 学习率 * 梯度
+w.data = w.data - 0.01 * w.grad
+
+# tensor([ 9.6000, 19.2000], requires_grad=True)
+print(f'更新后的权重: {w}')       # 9.6import torch
+
+torch.manual_seed(22)
+
+# 1. 定义张量
+w = torch.tensor(10, requires_grad=True, dtype=torch.float)
+
+# 2. 定义损失函数
+loss = w ** 2  + 20  # 倒数函数： 2w
+
+# 3. 迭代100次，求最优解
+for i in range(100):
+    # 3.1 前向传播，损失函数不能重复使用，每次都需要定义新的。
+    loss = w ** 2 + 20
+
+    # 3.2 梯度清零，默认是累加
+    # 至此(第一次的时候), 还没有计算梯度, 所以w.grad = None, 要做非空判断.
+    if w.grad is not None:
+        w.grad.zero_()
+
+    # 3.3 反向传播，更新w的grad值。
+    loss.sum().backward()
+
+    # 3. 4 权重更新
+    w.data = w.data - 0.01 * w.grad
+
+    # 3.5
+    print(f'第 {i} 次, 权重初始值: {w}, (0.01 * w.grad): {0.01 * w.grad:.5f}, loss: {loss:.5f}')
+
+print(f'最终结果 权重: {w}, 梯度: {w.grad:.5f}, loss: {loss:.5f}')
+```
+
+## 梯度计算注意点
+
+不能将自动微分的张量转换成numpy数组，会发生报错，可以通过detach()方法实现
+
+```
+import torch
+
+torch.manual_seed(22)
+
+
+t = torch.tensor([10, 20], requires_grad=True, dtype=torch.float)
+
+# 会报错，不能转换为numpy
+# print(f"{t.numpy()}")
+
+
+# detach()方法产生一个新的张量，底层数据和t1共享内存，但是不会自动微分。
+t1 = t.detach()
+print(f"""
+t1: {t1}
+t1.requires_grad: {t1.requires_grad}
+t1 numpy: {t1.numpy()}
+""")
+```
+
+## 简单应用案例
+
+```
+import torch
+
+torch.manual_seed(22)
+
+# 1. 定义x，表示：特征。 2行5列全1数据。
+x = torch.ones(2, 5)
+
+# 2. 定义y，2行3列全0数据。
+y = torch.zeros(2, 3)
+
+# 3. 初始化权重和偏执
+w = torch.randn(5, 3, requires_grad=True)
+b = torch.randn(3, requires_grad=True)
+print(f"初始化w: {w}, 偏置： {b}")
+
+
+# 4.前向传播，计算预测值
+#  2行5列 @5行3列 = 2行 3列
+# 矩阵加法。b会自动扩容为2行3列的数据和torch.matmul(x, w)，然后对于位置元素相加
+z = torch.matmul(x, w) + b
+print(f"预测值：{z}")
+
+# 5. 定义损失函数、计算损失
+criterion = torch.nn.MSELoss()
+# 计算损失
+loss = criterion(z, y)
+
+# 6.  进行自动微分, 求导, 结合反向传播, 更新权重
+loss.backward()
+
+# 7. 打印w, b 用来更新的梯度.
+print(f'w的梯度: {w.grad}')
+print(f'b的梯度: {b.grad}')
+```
+
+## 模拟线性回归
+
+```
+# 导入相关模块
+import torch
+from torch.utils.data import TensorDataset  # 构造数据集对象
+from torch.utils.data import DataLoader  # 数据加载器
+from torch import nn  # nn模块中有平方损失函数和假设函数
+from torch import optim  # optim模块中有优化器函数
+from sklearn.datasets import make_regression  # 创建线性回归模型数据集
+import matplotlib.pyplot as plt  # 可视化
+
+plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
+
+torch.manual_seed(22)
+
+
+def create_dataset():
+    # 1. 创建线性回归模拟数据集
+    x, y, coef = make_regression(
+        n_samples=100,  # 100条样本(100个样本点)
+        n_features=1,  # 1个特征(1个特征点)
+        noise=10,  # 噪声, 噪声越大, 样本点越散, 噪声越小, 样本点越集中
+        coef=True,  # 是否返回系数, 默认为False, 返回值为None
+        bias=14.5,  # 偏置
+        random_state=3  # 随机种子, 随机种子相同, 输出数据相同
+    )
+
+    x = torch.tensor(x).float()
+    y = torch.tensor(y).float()
+
+    return x, y, coef
+
+
+# 2. 模型训练
+def train(x, y, coef):
+    # 1. 创建数据集对象
+    dataset = TensorDataset(x, y)
+
+    # 2. 创建数据加载器
+    # batch_size: 每次迭代的样本数
+    # shuffle: 是否打乱数据
+    dataloader = DataLoader(dataset, batch_size=10, shuffle=True)
+
+    # 3. 创建线性回归模型
+    # 输入特征数: 1, 输出特征数: 1
+    # 默认权重、编制都是随机的。使用kaiming_uniform_初始化
+    model = nn.Linear(1, 1)
+
+    # 4. 创建损失函数
+    criterion = nn.MSELoss()
+
+    # 5. 创建优优化器
+    # parameters(): 用于获取模型的所有可学习参数（即权重和偏置）
+    optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+    # 6. 具体训练过程
+    # 定义变量, 分别表示: 训练轮数, 每轮的(平均)损失值, 训练总损失值, 训练的样本数.
+    epochs, loss_list, total_loss, total_sample = 100, [], 0.0, 0
+    # 开始训练
+    for epoch in range(epochs):  # 训练轮数
+        for train_x, train_y in dataloader:  # 训练批次
+            # print(f'模型参数, 权重: {model.weight}, 偏置: {model.bias}')
+
+            # 6.1 模型预测
+            y_pred = model(train_x)
+
+            # 6.2 计算每批次的评价损失值
+            # reshape(-1, 1)，第一维自动计算，第二维的大小为 1（即每行只有一个元素）。
+            loss = criterion(y_pred, train_y.reshape(-1, 1))
+            total_loss += loss.item()
+            total_sample += 1
+
+            # 6.3 梯度清零 + 反向传播 + 梯度更新.
+            optimizer.zero_grad()  # 梯度清零
+            loss.backward()  # 反向传播
+            optimizer.step()  # 梯度更新
+
+        loss_list.append(total_loss / total_sample)
+        print(f'轮数: {epoch + 1}, 平均损失值: {total_loss / total_sample}')
+
+    # 7. 打印(最终的)训练结果.
+    print(f'{epochs} 轮的平均损失分别为: {loss_list}')
+    print(f'模型参数, 权重: {model.weight}, 偏置: {model.bias}')
+
+    # 8. 绘制损失曲线.
+    #                 100轮         每轮的平均损失值
+    plt.plot(range(epochs), loss_list)
+    plt.title('损失值曲线变化图')
+    plt.grid()  # 绘制网格线
+    plt.show()
+
+    # 9. 绘制预测值和真实值的关系.
+    # 9.1 绘制样本点分布情况.
+    plt.scatter(x, y)
+    # 9.2 绘制训练模型的预测值.
+    # x: 100个样本点的特征.
+    y_pred = torch.tensor(data=[v * model.weight + model.bias for v in x])
+    # 9.3 计算真实值.
+    y_true = torch.tensor(data=[v * coef + 14.5 for v in x])
+    # 9.4 绘制预测值 和 真实值的 折线图.
+    plt.plot(x, y_pred, color='red', label='预测值')
+    plt.plot(x, y_true, color='green', label='真实值')
+    # 9.5 图例, 网格.
+    plt.legend()
+    plt.grid()
+    # 9.6 显示图像.
+    plt.show()
+
+    plt.show()
+
+
+if __name__ == '__main__':
+    # 3.1 创建数据集.
+    x, y, coef = create_dataset()
+    # print(f'x: {x}, y: {y}, coef: {coef}')
+
+    # 3.2 模型训练.
+    train(x, y, coef)
+```
